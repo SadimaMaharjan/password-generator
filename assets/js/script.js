@@ -197,7 +197,7 @@ var generatePassword = function () {
   );
 
   //check if the length of the password is ateast 8 characters and less than 128 and is a number
-  if (passwordLength >= 8 && passwordLength < 128 && !isNaN(passwordLength)) {
+  if (passwordLength >= 8 && passwordLength <= 128 && !isNaN(passwordLength)) {
     generatedPassword = checkPasswordCriteria(passwordLength);
     return generatedPassword;
   } else {
