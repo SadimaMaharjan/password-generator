@@ -1,10 +1,13 @@
 // Assignment Code
+
 var generateBtn = document.querySelector("#generate");
 
 var checkPasswordCriteria = function (length) {
-  var uniquePassword = "";
-  var arrayOfChosenCharacters = [];
+  var uniquePassword = ""; // variable to store the password
 
+  var arrayOfChosenCharacters = []; // array to store selected characters
+
+  //array of special characters
   var arrayOfSpecialCharacters = [
     "~",
     "`",
@@ -40,8 +43,10 @@ var checkPasswordCriteria = function (length) {
     "/",
   ];
 
+  //array of Numbers from 0 to 9
   var arrayOfNumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
+  // array of alphabets from a to z
   var arrayOfLowercaseLetters = [
     "a",
     "b",
@@ -71,6 +76,7 @@ var checkPasswordCriteria = function (length) {
     "z",
   ];
 
+  // array of alphabets from A to Z
   var arrayOfUppercaseLetters = [
     "A",
     "B",
@@ -103,6 +109,7 @@ var checkPasswordCriteria = function (length) {
   var containsSpecialCharacters = confirm(
     "Click OK to confirm including special characters."
   );
+
   var containsNumericCharacters = confirm(
     "Click OK to confirm including numeric characters."
   );
@@ -115,6 +122,7 @@ var checkPasswordCriteria = function (length) {
     "Click OK to confirm including uppercase characters."
   );
 
+  //check if user wants special characters in a password
   if (containsSpecialCharacters) {
     arrayOfChosenCharacters = [
       ...arrayOfChosenCharacters,
@@ -125,7 +133,7 @@ var checkPasswordCriteria = function (length) {
   }
 
   //console.log(arrayOfChosenCharacters);
-
+  //check if user wants numbers in a password
   if (containsNumericCharacters) {
     arrayOfChosenCharacters = [...arrayOfChosenCharacters, ...arrayOfNumbers];
   } else {
@@ -133,7 +141,7 @@ var checkPasswordCriteria = function (length) {
   }
 
   //console.log(arrayOfChosenCharacters);
-
+  //check if user wants lowercase characters in a password
   if (containsLowercaseCharacters) {
     arrayOfChosenCharacters = [
       ...arrayOfChosenCharacters,
@@ -144,7 +152,7 @@ var checkPasswordCriteria = function (length) {
   }
 
   //console.log(arrayOfChosenCharacters);
-
+  //check if user wants uppercase characters in a password
   if (containsUppercaseCharacters) {
     arrayOfChosenCharacters = [
       ...arrayOfChosenCharacters,
@@ -155,7 +163,7 @@ var checkPasswordCriteria = function (length) {
   }
 
   //console.log(arrayOfChosenCharacters);
-
+  // check if user has selected at least one of the character types; if not display an alert message
   if (
     !containsSpecialCharacters &&
     !containsNumericCharacters &&
@@ -166,6 +174,7 @@ var checkPasswordCriteria = function (length) {
     return uniquePassword;
   }
 
+  //loop through array of chosen characters and select characters at random index
   for (var i = 0; i < length; i++) {
     uniquePassword +=
       arrayOfChosenCharacters[
@@ -181,17 +190,18 @@ var checkPasswordCriteria = function (length) {
 //generatePassword function
 var generatePassword = function () {
   var generatedPassword = "";
+
   //passwordLength is the number given by user
   var passwordLength = prompt(
     "How many characters would you like your password to contain?"
   );
 
-  //check if the length of the password is ateast 8 characters
+  //check if the length of the password is ateast 8 characters and less than 128 and is a number
   if (passwordLength >= 8 && passwordLength < 128 && !isNaN(passwordLength)) {
     generatedPassword = checkPasswordCriteria(passwordLength);
     return generatedPassword;
   } else {
-    // if length of password is <8 prompt user to re-enter the number
+    // if length of password does not satisfy the condition then prompt user to re-enter the number
     passwordLength = prompt(
       "Password must be atleast 8 characters long. Please re-enter the number"
     );
