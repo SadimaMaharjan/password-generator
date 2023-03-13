@@ -197,15 +197,16 @@ var generatePassword = function () {
   );
 
   //check if the length of the password is ateast 8 characters and less than 128 and is a number
-  if (passwordLength >= 8 && passwordLength <= 128 && !isNaN(passwordLength)) {
-    generatedPassword = checkPasswordCriteria(passwordLength);
-    return generatedPassword;
-  } else {
-    // if length of password does not satisfy the condition then prompt user to re-enter the number
-    passwordLength = prompt(
-      "Password must be atleast 8 characters long. Please re-enter the number"
+  // if length of password does not satisfy the condition then prompt user to re-enter the number
+
+  if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
+    passwordLength = alert(
+      "Password must be a number between 8 and 128. Please re-enter the number"
     );
+    return generatePassword();
+  } else {
     generatedPassword = checkPasswordCriteria(passwordLength);
+    //console.log(generatedPassword);
     return generatedPassword;
   }
 };
